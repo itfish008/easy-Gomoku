@@ -51,3 +51,7 @@ git clone [repository-url]
 ## 许可证
 
 MIT License
+
+## 相关游戏
+
+- [Wordle Game](https://wordletoday.cc) - 快快来挑战每日单词游戏！
