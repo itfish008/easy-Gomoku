@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameOver = false;
     const boardState = Array(size).fill(null).map(() => Array(size).fill(null));
 
+    // Create the game board
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
             const cell = document.createElement('div');
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Handle cell click events
     function handleCellClick(row, col) {
         if (gameOver || boardState[row][col]) return;
 
@@ -25,66 +27,65 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.classList.add(currentPlayer);
 
         if (checkWin(row, col)) {
-            status.textContent = `${currentPlayer === 'black' ? '黑棋' : '白棋'}获胜!`;
+            status.textContent = `${currentPlayer === 'black' ? 'Black' : 'White'} Wins!`;
             gameOver = true;
         } else {
             currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
-            status.textContent = `当前玩家: ${currentPlayer === 'black' ? '黑棋' : '白棋'}`;
+            status.textContent = `Current Player: ${currentPlayer === 'black' ? 'Black' : 'White'}`;
         }
     }
 
+    // Check if the current move wins the game
     function checkWin(row, col) {
         const directions = [
-            { x: 1, y: 0 }, // 水平
-            { x: 0, y: 1 }, // 垂直
-            { x: 1, y: 1 }, // 斜对角
-            { x: 1, y: -1 } // 反斜对角
+            [1, 0],  // horizontal
+            [0, 1],  // vertical
+            [1, 1],  // diagonal
+            [1, -1]  // anti-diagonal
         ];
 
-        for (const { x, y } of directions) {
-            let count = 1;
-            for (let i = 1; i < 5; i++) {
-                const newRow = row + i * y;
-                const newCol = col + i * x;
-                if (newRow >= 0 && newRow < size && newCol >= 0 && newCol < size && boardState[newRow][newCol] === currentPlayer) {
-                    count++;
-                } else {
-                    break;
-                }
-            }
-            for (let i = 1; i < 5; i++) {
-                const newRow = row - i * y;
-                const newCol = col - i * x;
-                if (newRow >= 0 && newRow < size && newCol >= 0 && newCol < size && boardState[newRow][newCol] === currentPlayer) {
-                    count++;
-                } else {
-                    break;
-                }
-            }
-            if (count >= 5) return true;
-        }
-        return false;
+        return directions.some(([dx, dy]) => {
+            return checkDirection(row, col, dx, dy) + checkDirection(row, col, -dx, -dy) >= 4;
+        });
     }
 
-    status.textContent = `当前玩家: 黑棋`;
+    // Check consecutive pieces in a direction
+    function checkDirection(row, col, dx, dy) {
+        const player = boardState[row][col];
+        let count = 0;
+        let x = row + dx;
+        let y = col + dy;
 
-    // 生成《黑客帝国》动态下落数字效果
-    const matrix = document.createElement('div');
-    matrix.classList.add('matrix');
-    document.body.appendChild(matrix);
+        while (x >= 0 && x < size && y >= 0 && y < size && boardState[x][y] === player) {
+            count++;
+            x += dx;
+            y += dy;
+        }
 
-    const chars = '01';
-    const createMatrixEffect = () => {
-        const span = document.createElement('span');
-        span.textContent = chars[Math.floor(Math.random() * chars.length)];
-        span.style.left = `${Math.random() * 100}vw`;
-        span.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        matrix.appendChild(span);
+        return count;
+    }
 
-        setTimeout(() => {
-            matrix.removeChild(span);
-        }, 5000);
-    };
+    // Initialize game status
+    status.textContent = `Current Player: Black`;
 
-    setInterval(createMatrixEffect, 100);
+    // Generate Matrix-style falling digits effect
+    function createMatrixEffect() {
+        const matrix = document.createElement('div');
+        matrix.className = 'matrix';
+        document.body.appendChild(matrix);
+
+        setInterval(() => {
+            const span = document.createElement('span');
+            span.textContent = Math.random() > 0.5 ? '1' : '0';
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.animationDuration = Math.random() * 2 + 1 + 's';
+            matrix.appendChild(span);
+
+            setTimeout(() => {
+                span.remove();
+            }, 3000);
+        }, 50);
+    }
+
+    createMatrixEffect();
 });

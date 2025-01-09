@@ -1,57 +1,57 @@
-# 五子棋游戏
+# Gomoku Game
 
-一个具有赛博朋克风格的在线五子棋游戏，融合了经典的五子棋玩法和《黑客帝国》风格的视觉效果。
+A cyberpunk-style online Gomoku game that combines classic Gomoku gameplay with Matrix-style visual effects.
 
-## 功能特点
+## Features
 
-- 🎮 经典的15x15棋盘布局
-- 🎯 支持黑白双方轮流落子
-- ✨ 自动判定获胜条件
-- 🎨 精美的视觉设计
-  - 木质纹理棋盘
-  - 立体感棋子效果
-  - 《黑客帝国》风格的数字雨背景
-- 💻 响应式设计，支持各种屏幕尺寸
+- 🎮 Classic 15x15 board layout
+- 🎯 Support for alternating black and white moves
+- ✨ Automatic win condition detection
+- 🎨 Beautiful visual design
+  - Wooden texture board
+  - 3D piece effects
+  - Matrix-style digital rain background
+- 💻 Responsive design, supporting various screen sizes
 
-## 技术栈
+## Tech Stack
 
 - HTML5
 - CSS3
-- JavaScript (原生)
+- JavaScript (Vanilla)
 
-## 快速开始
+## Quick Start
 
-1. 克隆项目到本地：
+1. Clone the project locally:
 ```bash
 git clone [repository-url]
 ```
 
-2. 直接在浏览器中打开 `index.html` 文件，或使用本地服务器运行项目。
+2. Open `index.html` directly in your browser or use a local server to run the project.
 
-## 游戏规则
+## Game Rules
 
-1. 黑方先手，双方轮流落子
-2. 在空白处点击即可落子
-3. 任意一方在横向、纵向或斜向连成五子即获胜
-4. 游戏结束后会显示获胜方
+1. Black moves first, players take turns
+2. Click on empty spaces to place pieces
+3. Win by connecting five pieces horizontally, vertically, or diagonally
+4. Game result will be displayed when finished
 
-## 项目结构
+## Project Structure
 
 ```
 .
-├── index.html    # 游戏主页面
-├── style.css     # 样式文件
-└── script.js     # 游戏逻辑
+├── index.html    # Main game page
+├── style.css     # Style sheet
+└── script.js     # Game logic
 ```
 
-## 贡献
+## Contributing
 
-欢迎提交 Issue 和 Pull Request 来帮助改进这个项目。
+Issues and Pull Requests are welcome to help improve this project.
 
-## 许可证
+## License
 
 MIT License
 
-## 相关游戏
+## Related Games
 
-- [Wordle Game](https://wordletoday.cc) - 快快来挑战每日单词游戏！
+- [Wordle Game](https://wordletoday.cc) - Come challenge the daily word game!
